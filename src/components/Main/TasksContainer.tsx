@@ -1,4 +1,3 @@
-import React from 'react';
 import { useCx } from '../../context';
 import { TaskComponent } from './TaskComponent';
 

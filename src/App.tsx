@@ -13,6 +13,7 @@ const App = () => {
         justify-between
         min-h-screen
         bg-[url('/images/bg-mobile-light.jpg')]
+        bg-contain
         bg-no-repeat
         "
       >

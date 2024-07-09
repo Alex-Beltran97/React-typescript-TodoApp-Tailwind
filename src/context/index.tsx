@@ -1,4 +1,4 @@
-import React, { createContext, useContext, Fragment } from 'react';
+import React, { createContext, useContext } from 'react';
 import { useTasks } from '../hooks';
 
 interface Props {

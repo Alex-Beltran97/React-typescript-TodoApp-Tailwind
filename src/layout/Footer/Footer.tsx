@@ -1,5 +1,3 @@
-import React from 'react';
-
 export const FooterComponent = () => {
   return (<>
     <footer className='text-center'>
