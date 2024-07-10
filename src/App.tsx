@@ -12,7 +12,7 @@ const App = () => {
         flex-col
         justify-between
         min-h-screen
-        lg:bg-[url('/images/bg-desktop-light.jpg')]
+        md:bg-[url('/images/bg-desktop-light.jpg')]
         bg-[url('/images/bg-mobile-light.jpg')]
         bg-contain
         bg-no-repeat
