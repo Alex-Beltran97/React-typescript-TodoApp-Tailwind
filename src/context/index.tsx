@@ -16,10 +16,10 @@ export const useCx = () => {
 
 const ContextProvider = ({ children, className } : Props) => {
 
-  const { tasks } = useTasks();
+  const { attributes, methods } = useTasks();
 
   return (<>
-    <Context.Provider value={{ tasks }}>
+    <Context.Provider value={{ attributes, methods }}>
       <div className={ className }>
         { children }
       </div>

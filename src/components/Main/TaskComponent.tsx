@@ -1,3 +1,5 @@
+import { useCx } from "../../context";
+
 interface Props {
   task: ITask;
 };
@@ -5,9 +7,16 @@ interface Props {
 export const TaskComponent = ({ task }: Props) => {
   const { id, name, completed } = task;
 
+  const cx = useCx();
+  const handleCompleteTask = cx?.methods?.handleCompleteTask!;
+  const handleDeleteTask = cx?.methods?.handleDeleteTask!;
+
   return (<>
-    <div className='flex items-center justify-between border-b-2 py-2'>
-      <div className='flex items-center gap-2'>
+    <div
+      onClick={() => handleCompleteTask(id)}
+      className='flex items-center justify-between border-b-2 py-2'
+    >
+      <div className='flex items-center gap-2 break-all'>
         <label
           className={`
           w-[1.5rem]
@@ -31,9 +40,9 @@ export const TaskComponent = ({ task }: Props) => {
           />
           <img className={`object-cover ${ completed ? "block" : "hidden" }`} src="/icons/icon-check.svg" alt="check-icon" />
         </label>
-        <p>{ name }</p>
+        <p className={completed ? "line-through" : "" }>{ name }</p>
       </div>
-      <button className='mx-4'>
+      <button className='mx-4' onClick={(e) => { e.stopPropagation() ;handleDeleteTask(id)}}>
         <img className='w-3' src="/icons/icon-cross.svg" alt="cross-exit" />
       </button>
     </div>

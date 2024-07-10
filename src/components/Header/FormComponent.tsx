@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Field, Form, Formik, FormikValues } from 'formik';
 import * as Yup from 'yup';
+import { useCx } from '../../context';
 
 const formSchema = Yup.object().shape({
   newTask: Yup.string().required("Field must be requiered!")
@@ -11,13 +12,17 @@ export const FormComponent = () => {
     newTask: ''
   });
 
-  return (<>
+  const cx = useCx();
+  const handleCreateTask = cx?.methods?.handleCreateTask!;
+
+return (<>
     <Formik
       initialValues={ initialValues }
       validationSchema={ formSchema }
       enableReinitialize
-      onSubmit={({ newTask } : FormikValues) => {
-        console.log(newTask);
+      onSubmit={({ newTask } : FormikValues, { resetForm }) => {
+        handleCreateTask(newTask);
+        resetForm();
       }}
     >
       { ({ errors, touched }) => (<Form className='mt-4'>
@@ -28,7 +33,11 @@ export const FormComponent = () => {
           placeholder="Create a new todo..."
         />
         <div
-          className={errors.newTask && touched.newTask ? "visible" : "invisible"}
+          className={`
+            ${errors.newTask && touched.newTask ? "visible" : "invisible"}
+            underline
+            text-white
+          `}
         >{ String(errors.newTask) }</div>
       </Form>) }
     </Formik>
